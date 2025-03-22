@@ -1,0 +1,102 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: rgba(var(--bg-color-rgb), 0.8);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(var(--text-color-rgb), 0.1);
+    gap: 2rem; /* Adds gap between flex items */
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    flex-shrink: 0; /* Prevents logo from shrinking */
+}
+
+.logoPrimary {
+    color: var(--accent-color);
+    font-size: 2rem;
+    font-weight: 700;
+    text-decoration: none;
+    flex-shrink: 0; 
+}
+
+.navList {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    margin-left: auto;
+    padding: 0;
+    flex-grow: 0;
+    justify-content: flex-end; 
+}
+
+.navItem {
+    position: relative;
+}
+
+.navLink {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    font-size: 0.9rem;
+  padding: 0.3rem 0.7rem;
+    display: block; 
+}
+
+.navLink:hover {
+    color: var(--accent-color);
+}
+
+.navLink::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.navLink:hover::after {
+    width: 100%;
+}
+
+.themeToggleContainer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.5rem 1rem;
+        flex-wrap: wrap; 
+        justify-content: center; 
+    }
+    
+    .navList {
+        order: 3; 
+        width: 100%;
+        gap: 0.8rem;
+        justify-content: center;
+    }
+    
+    .navLink {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+}

@@ -1,95 +1,100 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client';
+
+import { motion } from 'framer-motion';
+import React from 'react';
+import Image from 'next/image';
+import TypewriterBio from '@/app/components/TypewriterBio';
+import Certificates from '@/app/sections/Certificates';
+import styles from '@/app/styles/Hero.module.css';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import ExperienceTimeline from './components/ExperienceTimeline';
+import Skills from './components/Skills';
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const bioText = "SOFTWARE ENGINEER, CERTIFIED FULLSTACK DEVELOPER.";
+  const navLinks = ['Home', 'Expertise', 'Experience', 'Contact'];
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+  const developerBio = `A passionate software engineer with expertise in creating robust web applications and immersive user experiences. 
+  Combining technical proficiency with creative problem-solving to deliver efficient, scalable solutions. 
+  Continuously exploring new technologies while maintaining a strong focus on clean code architecture 
+  and user-centric design principles.`;
+
+  return (
+    <main className={styles.container}>
+    <Navbar navLinks={navLinks} />
+
+      {/* Hero Section */}
+      <section className={styles.heroSection}>
+        <div className={styles.textContainer}>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className={styles.title}
           >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
+           Bamgbose Christian
+          </motion.h1>
+          
+          <TypewriterBio text={bioText} />
+          
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2, duration: 0.5 }}
+            className={styles.devtext}
           >
-            Read our docs
-          </a>
+            {developerBio}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+          >
+            <motion.button
+              className={styles.ctaButton}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => document.getElementById('certificates')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              View Certifications
+            </motion.button>
+          </motion.div>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+
+        {/* Image Container */}
+        <motion.div
+          className={styles.imageContainer}
+          initial={{ x: 100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ type: 'spring', stiffness: 50 }}
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+          <div className={styles.imageWrapper}>
+            <Image
+              src="/portfolioPhotoofCee.jpg"
+              alt="DEVJ7"
+              fill
+              className={styles.profileImage}
+              priority
+            />
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Certificates Section */}
+      <Certificates id="certificates"/>
+
+
+      {/* Experience Timeline */}
+      <ExperienceTimeline id="experience"/>
+
+      {/* Expertise Section */} 
+      <Skills id="expertise"/>
+
+      {/* Footer */}
+      <Footer id="contact"/>
+    </main>
   );
 }
